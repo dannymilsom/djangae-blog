@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+import shutil
+import stat
+
+from StringIO import StringIO
+from zipfile import ZipFile
+from urllib import urlopen
+
+REQUIREMENTS = [ "pip", "git" ]
+
+FILES_IGNORED_FOR_DELETION = [ "google_appengine" ]
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+REQUIREMENTS_FILE = os.path.join(PROJECT_DIR, "requirements.txt")
+TARGET_DIR = os.path.join(PROJECT_DIR, "sitepackages")
+
+APPENGINE_TARGET_DIR = os.path.join(TARGET_DIR, "google_appengine")
+APPENGINE_SDK_URL = "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.13.zip"
+
+if __name__ == "__main__":
+    #Make sure the user has everything they need
+    for bin in REQUIREMENTS:
+        if not subprocess.check_output(["which", bin]).strip():
+            raise RuntimeError("You must install the '%s' command" % bin)
+
+    if not os.path.exists(TARGET_DIR):
+        print('Creating `sitepackages` directory for dependencies...')
+        os.makedirs(TARGET_DIR)
+
+    if not os.path.exists(APPENGINE_TARGET_DIR):
+        print('Downloading the AppEngine SDK...')
+
+        url = urlopen(APPENGINE_SDK_URL)
+        zipfile = ZipFile(StringIO(url.read()))
+        zipfile.extractall(TARGET_DIR)
+
+        #Make sure the dev_appserver and appcfg are executable
+        for bin in ("dev_appserver.py", "appcfg.py"):
+            app = os.path.join(APPENGINE_TARGET_DIR, bin)
+            st = os.stat(app)
+            os.chmod(app, st.st_mode | stat.S_IEXEC)
+    else:
+        print('Not updating SDK as it exists. Remove {} and re-run to get the latest SDK'.format(APPENGINE_TARGET_DIR))
+
+
+    for file in os.listdir(TARGET_DIR):
+        #Remove all folders and files, we leave symlinks as they will be pointing
+        #to submodules
+        if file in FILES_IGNORED_FOR_DELETION:
+            continue
+
+        path = os.path.join(TARGET_DIR, file)
+        if os.path.isdir(path) and not os.path.islink(path):
+            shutil.rmtree(path)
+        elif os.path.isfile(path):
+            os.remove(path)
+
+    print("Running pip...")
+    subprocess.check_output(["pip", "install", "-r", REQUIREMENTS_FILE, "-t", TARGET_DIR, "-I", "--no-compile"])
