@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangosecure',
+    'csp',
     'djangae',
 )
 
@@ -49,6 +51,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'scaffold.urls'
@@ -84,3 +88,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+if DEBUG:
+    CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+
