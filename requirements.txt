@@ -2,3 +2,4 @@ git+https://github.com/lukebpotato/djangae.git#egg=djangae
 git+https://github.com/django/django.git@stable/1.6.x#django
 django-secure
 django-csp
+nose
