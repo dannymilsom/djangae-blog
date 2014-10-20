@@ -10,6 +10,9 @@ handlers:
   script: scaffold.wsgi.application
   login: admin
 
+- url: /static/admin/
+  static_dir: sitepackages/django/contrib/admin/static/admin/
+
 - url: /.*
   script: scaffold.wsgi.application
 
