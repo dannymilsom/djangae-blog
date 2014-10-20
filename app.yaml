@@ -25,3 +25,4 @@ skip_files:
     - install_deps
     - requirements.txt
     - sitepackages/google_appengine*
+    - (.*)\.pyc
