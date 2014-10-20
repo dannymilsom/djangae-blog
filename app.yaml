@@ -9,13 +9,15 @@ handlers:
 - url: /_ah/(mapreduce|queue|warmup).*
   script: scaffold.wsgi.application
   login: admin
+  secure: always
 
 - url: /static/admin/
   static_dir: sitepackages/django/contrib/admin/static/admin/
+  secure: always
 
 - url: /.*
   script: scaffold.wsgi.application
-
+  secure: always
 
 skip_files:
     - manage.py
