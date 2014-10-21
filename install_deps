@@ -22,9 +22,9 @@ APPENGINE_SDK_URL = "https://storage.googleapis.com/appengine-sdks/featured/goog
 
 if __name__ == "__main__":
     #Make sure the user has everything they need
-    for bin in REQUIREMENTS:
-        if not subprocess.check_output(["which", bin]).strip():
-            raise RuntimeError("You must install the '%s' command" % bin)
+    for command in REQUIREMENTS:
+        if not subprocess.check_output(["which", command]).strip():
+            raise RuntimeError("You must install the '%s' command" % command)
 
     if not os.path.exists(TARGET_DIR):
         print('Creating `sitepackages` directory for dependencies...')
@@ -38,21 +38,19 @@ if __name__ == "__main__":
         zipfile.extractall(TARGET_DIR)
 
         #Make sure the dev_appserver and appcfg are executable
-        for bin in ("dev_appserver.py", "appcfg.py"):
-            app = os.path.join(APPENGINE_TARGET_DIR, bin)
+        for module in ("dev_appserver.py", "appcfg.py"):
+            app = os.path.join(APPENGINE_TARGET_DIR, module)
             st = os.stat(app)
             os.chmod(app, st.st_mode | stat.S_IEXEC)
     else:
         print('Not updating SDK as it exists. Remove {} and re-run to get the latest SDK'.format(APPENGINE_TARGET_DIR))
 
 
-    for file in os.listdir(TARGET_DIR):
-        #Remove all folders and files, we leave symlinks as they will be pointing
-        #to submodules
-        if file in FILES_IGNORED_FOR_DELETION:
-            continue
-
-        path = os.path.join(TARGET_DIR, file)
+    #Remove all folders and files, we leave symlinks as they will be pointing
+    #to submodules
+    filenames = (filename for filename in os.listdir(TARGET_DIR) if filename not in FILES_IGNORED_FOR_DELETION)
+    for filename in filenames:
+        path = os.path.join(TARGET_DIR, filename)
         if os.path.isdir(path) and not os.path.islink(path):
             shutil.rmtree(path)
         elif os.path.isfile(path):
