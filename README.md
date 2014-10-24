@@ -5,7 +5,7 @@ This is a barebones Django project configured for use on App Engine using [https
 
 To get started:
 
- - Clone this repo (don't forgot to change the origin to your own repo!)
+ - Clone this repo (don't forget to change the origin to your own repo!)
  - Run ./install_deps (this will pip install requirements, and download the App Engine SDK)
  - python manage.py checksecure --settings=scaffold.settings_live
  - python manage.py runserver
