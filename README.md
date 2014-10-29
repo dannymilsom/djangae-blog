@@ -1,7 +1,7 @@
 
 # The Djangae Scaffold Project
 
-This is a barebones Django project configured for use on App Engine using [https://github.com/potatolondon/djangae](Djangae)
+This is a barebones Django project configured for use on App Engine using [Djangae](https://github.com/potatolondon/djangae)
 
 To get started:
 
