@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djangosecure',
     'csp',
-    'djangae',
+    'djangae.contrib.gauth',
     'djangae', # Djangae should be last
 )
 
@@ -81,3 +81,6 @@ STATIC_URL = '/static/'
 
 if DEBUG:
     CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+
+
+from djangae.contrib.gauth.settings import *
