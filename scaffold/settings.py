@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'djangosecure',
     'csp',
     'djangae',
+    'djangae', # Djangae should be last
 )
 
 MIDDLEWARE_CLASSES = (
