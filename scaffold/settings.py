@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'djangosecure',
     'csp',
     'djangae.contrib.gauth',
-    'djangae', # Djangae should be last
+    'djangae', # Djangae should be after Django core/contrib things
 )
 
 MIDDLEWARE_CLASSES = (
