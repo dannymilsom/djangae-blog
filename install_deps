@@ -18,7 +18,7 @@ REQUIREMENTS_FILE = os.path.join(PROJECT_DIR, "requirements.txt")
 TARGET_DIR = os.path.join(PROJECT_DIR, "sitepackages")
 
 APPENGINE_TARGET_DIR = os.path.join(TARGET_DIR, "google_appengine")
-APPENGINE_SDK_URL = "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.14.zip"
+APPENGINE_SDK_URL = "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.15.zip"
 
 if __name__ == "__main__":
     #Make sure the user has everything they need
