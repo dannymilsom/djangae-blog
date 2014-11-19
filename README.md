@@ -12,3 +12,13 @@ To get started:
 
 The install_deps helper script will install dependencies into a 'sitepackages' folder which is added to the path. Each time you run it your
 sitepackages will be wiped out and reinstalled with pip. The SDK will only be downloaded the first time (as it's a large download).
+
+## Deployment
+
+Create a Google App Engine project. Edit `app.yaml` and change `application: djangae-scaffold` to `application: your-app-id`. Then, if you're in the `djangae-scaffold` directory, run:
+
+    $ appcfg.py update ./
+
+If you have two-factor authentication enabled in your Google account, run:
+
+    $ appcfg.py --oauth2 update ./
