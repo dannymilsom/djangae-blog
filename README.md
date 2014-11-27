@@ -22,3 +22,7 @@ Create a Google App Engine project. Edit `app.yaml` and change `application: dja
 If you have two-factor authentication enabled in your Google account, run:
 
     $ appcfg.py --oauth2 update ./
+
+## Custom Domains
+
+There is currently a [bug in App Engine](https://code.google.com/p/googleappengine/issues/detail?id=7427) which means that HSTS headers are stripped from responses served from a custom domain.  If you're using HTTPS on a custom domain then you should make a request to Google to get your domain whitelisted for HSTS.
