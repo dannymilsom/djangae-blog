@@ -8,5 +8,11 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_SSL_REDIRECT = True
 
+
+SECURE_REDIRECT_EXEMPT = [
+    # djangosecure compares these to request.path.lstrip("/"), hence the lack of preceding /
+    r"^_ah/"
+]
+
 DEBUG = False
 TEMPLATE_DEBUG = False
