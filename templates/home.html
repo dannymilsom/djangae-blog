@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Potato Blog | Welcome
+{% endblock %}
+
+{% block main %}
+<div id="homepage">
+  <div class="container">
+    <h1>A simple blog built using <a href="https://github.com/potatolondon/djangae">djangae.</a></h1>
+        <ul>
+            <li>The blog component renders traditional django templates, 
+                making queries inside the appropriate view.
+            </li>
+            <li>The feed component renders template snippets using Backbone, 
+                making queries to a basic API provided by the django rest framework.
+            </li>
+            <li>The search component provides functionality to find articles 
+                which contain a keyword in their title/slug field.
+            </li>
+            <li>The admin component allows authenticated users to 
+                create/edit/delete article objects using a custom interface.
+            </li>
+            <li>The backend data is stored in the App Engine Datastore, a 
+                schemaless NoSQL database.
+            </li>
+            <li>Authentication is possible using an approved Google account.</li>
+            <li>The project structure is taken from djangae-scaffold.</li>
+        </ul>
+  </div>
+</div>
+{% endblock %}

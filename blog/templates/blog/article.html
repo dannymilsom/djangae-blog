@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div id="article" class="col-xs-12 col-sm-8 article">
+      <h1>{{ article.title}}</h1>
+      <span>Author: {{ article.author.email }} | Date: {{ article.created_at }} | 
+        <a href="#comments">Comments: {{ comments|length }}</a>
+      </span>
+      <div class="options">
+        <ul class="share">
+          <li><i class="fa fa-facebook-official fa-2x"></i></li>
+          <li><i class="fa fa-google-plus-square fa-2x"></i></li>
+          <li><i class="fa fa-twitter-square fa-2x"></i></li>
+          <li><i class="fa fa-pinterest-square fa-2x"></i></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <ul class="admin-options">
+          <li title="Edit article">
+            <a href="{% url 'edit_article' article.slug %}">
+              <i class="fa fa-pencil-square fa-2x"></i>
+            </a>
+          </li>
+          <li title="Delete article">
+            <a href="{% url 'delete_article' article.slug %}">
+              <i class="fa fa-trash fa-2x"></i>
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+      </div>
+      <div class="img-container">
+        <img src="{{ article.image }}"/>
+      </div>
+      <p class="content">{{ article.content }}<p>
+    </div>
+  </div>
+  <div class="row">
+    <div id="comments" class="col-xs-12 col-sm-8">
+      <h2>Comments</h2>
+        {% if comments %}
+          {% for comment in comments %}
+            <div class="comment">
+              <span class="meta">{{ comment.name }} at {{ comment.created_at }}</span>
+              <span class="message">{{ comment.message }}</span>
+            </div>
+          {% endfor %}
+        {% else %}
+          No Comments
+        {% endif %}
+      <h3>Leave a comment</h3>
+        <form id="add-comment" method="post">{% csrf_token %}
+            {{ form.name }}
+            {{ form.email }}
+            {{ form.message }}
+            <input type="submit" class="col-xs-12"/>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

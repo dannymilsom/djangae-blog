@@ -1,28 +1,25 @@
+# djangae-blog-example
 
-# The Djangae Scaffold Project
+A simple blog built using [djangae](https://github.com/potatolondon/djangae), a Django app that allows you to run Django on [Google App Engine](https://cloud.google.com/appengine).
 
-This is a barebones Django project configured for use on App Engine using [Djangae](https://github.com/potatolondon/djangae)
+The project boiler plate has been taken from [djangae-scaffold](https://github.com/potatolondon/djangae-scaffold).
 
-To get started:
+## Installation ##
 
- - Clone this repo (don't forget to change the origin to your own repo!)
- - Run `./install_deps` (this will pip install requirements, and download the App Engine SDK)
- - `python manage.py checksecure --settings=scaffold.settings_live`
- - `python manage.py runserver`
+First install all the pip requirements via 
 
-The install_deps helper script will install dependencies into a 'sitepackages' folder which is added to the path. Each time you run it your
-sitepackages will be wiped out and reinstalled with pip. The SDK will only be downloaded the first time (as it's a large download).
+    ./install_deps
 
-## Deployment
+Then start the development server with 
 
-Create a Google App Engine project. Edit `app.yaml` and change `application: djangae-scaffold` to `application: your-app-id`. Then, if you're in the `djangae-scaffold` directory, run:
+    python dev_appserver.py yourapp
 
-    $ appcfg.py update ./
+## Tests ##
 
-If you have two-factor authentication enabled in your Google account, run:
+You can run tests using the regular django admin command
 
-    $ appcfg.py --oauth2 update ./
+    python manage.py test
 
-## Custom Domains
+## Preview ##
 
-There is currently a [bug in App Engine](https://code.google.com/p/googleappengine/issues/detail?id=7427) which means that HSTS headers are stripped from responses served from a custom domain.  If you're using HTTPS on a custom domain then you should make a request to Google to get your domain whitelisted for HSTS.
+To view the site in the wild, visit [djangae-blog-example.appspot.com](https://djangae-blog-example.appspot.com)

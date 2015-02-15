@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Potato Blog | Create Article
+{% endblock %}
+
+{% block main %}
+<div id="create-article" class="container">
+  <div class="row">
+    <span class="col-xs-12 create-icon">
+      <i class="fa fa-pencil fa-4x"></i>
+    </span>
+    {% if form.title.value %}
+        <h2>Edit an existing article</h2>
+    {% else %}
+        <h2>Create a new article</h2>
+    {% endif %}
+    <form id="create-new-article" method="post">{% csrf_token %}
+      {{ form.title }}
+      {{ form.slug }}
+      {{ form.image }}
+      {{ form.content }}
+      <input type="submit" class="col-xs-12 col-sm-offset-2 col-sm-8"/>
+    </form>
+  </div>
+</div>
+{% endblock %}

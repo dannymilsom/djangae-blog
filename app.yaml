@@ -1,5 +1,5 @@
-application: djangae-scaffold
-version: 1
+application: djangae-blog-example
+version: 3
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -14,6 +14,9 @@ handlers:
 - url: /static/admin/
   static_dir: sitepackages/django/contrib/admin/static/admin/
   secure: always
+
+- url: /static
+  static_dir: static
 
 # Set Django admin to be login:admin as well as Django's is_staff restriction
 - url: /admin.*

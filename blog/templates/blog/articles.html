@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+Potato Blog | Articles
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h2>Articles</h2>
+  {% include 'blog/articles-grid.html' %}
+</div>
+{% endblock %}

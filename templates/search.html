@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+Potato Blog | Search Results
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <h2>Search Results for "{{ query }}"</h2>
+    {% include 'blog/articles-grid.html' %}
+  </div>
+{% endblock %}

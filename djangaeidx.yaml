@@ -1,0 +1,3 @@
+blog_article:
+  slug: [icontains]
+  title: [icontains]

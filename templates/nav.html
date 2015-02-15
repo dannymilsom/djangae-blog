@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="fa fa-bars"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">Djangae Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'display_articles' %}">Blog</a>
+        </li>
+        <li>
+          <a href="{% url 'feed' %}">Feed</a>
+        </li>
+        <li>
+          <form id="search-form" action="/search">
+            <input id="search-keywords" class="hidden" placeholder="Enter your search term..." type="search" name="search">
+            <input id="search-submit" type="submit" value="Search">
+          </form>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'admin_home' %}">Admin</a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}">Log Out</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'login' %}">Log In</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

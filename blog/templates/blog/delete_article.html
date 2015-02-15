@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Potato Blog | Delete Article
+{% endblock %}
+
+{% block main %}
+<div id="delete-article" class="container">
+  <div class="row">
+    <span class="col-xs-12 delete-icon">
+      <i class="fa fa-trash fa-4x"></i>
+    </span>
+    <h2>Delete an article</h2>
+    <p class="delete-warning" class="col-xs-12">
+      This is an irreversible action. Please confirm if you would like to delete 
+      this article or <a href="{% url 'admin_home' %}">cancel</a>.
+    </p>
+    <form id="delete-article" method="post">{% csrf_token %}
+      <input type="submit" value="Delete" class="col-xs-6 col-sm-offset-5 col-sm-2"/>
+    </form>
+  </div>
+</div>
+{% endblock %}

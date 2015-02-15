@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <div id="container"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {% load staticfiles %}
+  <script src="{% static 'js/libs/underscore-min.js' %}"></script>
+  <script src="{% static 'js/libs/backbone-min.js' %}"></script>
+  <script src="{% static 'js/feed.js' %}"></script>
+
+  <script type="text/template" id="article-preview">
+    <div class="image-wrapper col-xs-4 col-sm-2">
+      <a href=/blog/"<%= slug %>">
+        <img src="<%= image %>"/>
+        <span class="image-text">Continue Reading</span>
+      </a>
+    </div>
+    <div class="caption col-xs-8 col-sm-10">
+      <h3 class="title"><a href="<%= slug %>"><%= title %></a></h3>
+      <span class="meta"><%= created_at %></span>
+      <span class="author"></span><span class="read-more">Continue reading...</span>
+    </div>
+  </script>
+
+  <script type="text/template" id="spa-container">
+    <ul id="articles-grid" class="feed"></ul>
+  </script>
+
+  <script type="text/template" id="display-article">
+    <h1 class="title"><%= title %></h1>
+    <ul class="share">
+      <li><i class="fa fa-facebook-official fa-2x"></i></li>
+      <li><i class="fa fa-google-plus-square fa-2x"></i></li>
+      <li><i class="fa fa-twitter-square fa-2x"></i></li>
+      <li><i class="fa fa-pinterest-square fa-2x"></i></li>
+    </ul>
+    <div class="img-container">
+      <img src="<%= image %>"/>
+    </div>
+    <p><%= content %><p>
+  </script>
+{% endblock %}
