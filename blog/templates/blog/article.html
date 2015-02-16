@@ -29,6 +29,10 @@
             </a>
           </li>
         </ul>
+      {% else %}
+      <a class="back display-articles" href="{% url 'display_articles' %}" title="Back to articles">
+        <i class="fa fa-reply fa-2x"></i>
+      </a>
       {% endif %}
       </div>
       <div class="img-container">

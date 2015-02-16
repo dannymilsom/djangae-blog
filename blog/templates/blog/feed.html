@@ -2,7 +2,7 @@
 
 {% block main %}
 <div class="container">
-  <div id="container"></div>
+  <div id="feed-container"></div>
 </div>
 {% endblock %}
 
@@ -14,7 +14,7 @@
 
   <script type="text/template" id="article-preview">
     <div class="image-wrapper col-xs-4 col-sm-2">
-      <a href=/blog/"<%= slug %>">
+      <a href=/feed/<%= slug %>>
         <img src="<%= image %>"/>
         <span class="image-text">Continue Reading</span>
       </a>
@@ -27,17 +27,25 @@
   </script>
 
   <script type="text/template" id="spa-container">
+    <i class="fa fa-refresh fa-spin fa-4x col-xs-12"></i>
     <ul id="articles-grid" class="feed"></ul>
+    <div id="article" class="article col-xs-12 col-sm-8"></div>
   </script>
 
   <script type="text/template" id="display-article">
     <h1 class="title"><%= title %></h1>
-    <ul class="share">
-      <li><i class="fa fa-facebook-official fa-2x"></i></li>
-      <li><i class="fa fa-google-plus-square fa-2x"></i></li>
-      <li><i class="fa fa-twitter-square fa-2x"></i></li>
-      <li><i class="fa fa-pinterest-square fa-2x"></i></li>
-    </ul>
+    <span>Author: <%= author %> | Date: <%= created_at %></span>
+    <div class="options">
+      <ul class="share">
+        <li><i class="fa fa-facebook-official fa-2x"></i></li>
+        <li><i class="fa fa-google-plus-square fa-2x"></i></li>
+        <li><i class="fa fa-twitter-square fa-2x"></i></li>
+        <li><i class="fa fa-pinterest-square fa-2x"></i></li>
+      </ul>
+      <a class="back display-articles" href="/feed/" title="Back to articles">
+        <i class="fa fa-reply fa-2x"></i>
+      </a>
+    </div>
     <div class="img-container">
       <img src="<%= image %>"/>
     </div>
