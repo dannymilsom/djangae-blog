@@ -6,11 +6,14 @@ from django.shortcuts import render, get_object_or_404
 from blog.forms import ArticleForm, DeleteArticleForm, CommentForm
 from blog.models import Article, Comment
 
+from session_csrf import anonymous_csrf
+
+@anonymous_csrf
 def display_article(request, slug):
     """
     Renders a template to display a single Article, identified by its slug.
-
-    If no Article object matches the slug request, we return 404.
+    If no Article object matches the slug request, we return 404. Both 
+    authenticated and anonymous users can leave comments.
     """
 
     article = get_object_or_404(Article, slug=slug)

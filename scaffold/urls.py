@@ -1,10 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
-# import session_csrf
-# session_csrf.monkeypatch()
-
 from django.contrib import admin
 admin.autodiscover()
+
+import session_csrf
+session_csrf.monkeypatch()
 
 from rest_framework import routers
 router = routers.DefaultRouter()

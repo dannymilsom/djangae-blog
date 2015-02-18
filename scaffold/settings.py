@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'session_csrf.CsrfMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
 )
 
@@ -67,7 +67,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
-    "django.core.context_processors.csrf"
+    "session_csrf.context_processor",
 )
 
 def check_session_csrf_enabled():

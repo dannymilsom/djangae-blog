@@ -79,6 +79,7 @@ class ArticleViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/article.html')
         self.assertTrue('article' in response.context)
+        self.assertTrue('csrf_token' in response.context)
 
     def test_article_does_not_exist(self):
         self.create_articles()
@@ -96,6 +97,7 @@ class ArticleViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/create_or_edit_article.html')
         self.assertTrue('form' in response.context)
+        self.assertTrue('csrf_token' in response.context)
 
     def test_create_articles_valid(self):
         self.user_login()
@@ -117,6 +119,7 @@ class ArticleViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/create_or_edit_article.html')
         self.assertTrue('form' in response.context)
+        self.assertTrue('csrf_token' in response.context)
 
     def test_delete_article_redirects_anonymous(self):
         response = self.client.get(reverse('delete_article',
@@ -131,6 +134,7 @@ class ArticleViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/delete_article.html')
         self.assertTrue('form' in response.context)
+        self.assertTrue('csrf_token' in response.context)
 
     def test_delete_articles_valid(self):
         self.create_articles()
