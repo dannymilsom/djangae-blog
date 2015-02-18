@@ -11,13 +11,12 @@ from blog.models import Article
 def search(request):
     """Search the Datastore for query string matches."""
 
-    data = {}
     # searching the content raises an exception using a Datastore backend
-    fields = ('title', 'slug')
     query_string = request.GET.get('search', '').strip()
-    data['query'] = query_string
+    data = {'query': query_string}
 
     if query_string:
+        fields = ('title', 'slug')
         entry_query = build_query(query_string, fields)
         data['articles'] = Article.objects.filter(entry_query)
 
