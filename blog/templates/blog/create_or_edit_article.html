@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-Potato Blog | Create Article
+    {% if form.title.value %}
+        Edit Article
+    {% else %}
+        Create Article
+    {% endif %}
 {% endblock %}
 
 {% block main %}
