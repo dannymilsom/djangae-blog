@@ -4,7 +4,6 @@ from django.shortcuts import render
 
 from google.appengine.api import users
 
-from scaffold.forms import LoginForm
 from scaffold.utils import build_query
 
 from blog.models import Article
