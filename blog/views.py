@@ -15,8 +15,7 @@ def display_article(request, slug):
 
     article = get_object_or_404(Article, slug=slug)
 
-    comment = Comment()
-    form = CommentForm(request.POST or None, instance=comment)
+    form = CommentForm(request.POST or None, instance=Comment())
     if request.method == 'POST' and form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.article = article
